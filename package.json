@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "asterisk-ami": "^0.1.0",
+    "asterisk-manager": "^0.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.1"
+  },
+  "name": "webphonenode",
+  "description": "WebPhone to connect to Asterisk and make calls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/villagraclr/WebPhoneNode.git"
+  },
+  "author": "Full Stack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/villagraclr/WebPhoneNode/issues"
+  },
+  "homepage": "https://github.com/villagraclr/WebPhoneNode#readme"
+}
