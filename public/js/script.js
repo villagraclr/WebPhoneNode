@@ -6,7 +6,8 @@ const callStatusElement = document.getElementById('callStatus');
 const makeCallButton = document.getElementById('makeCallButton');
 const answerCallButton = document.getElementById('answerCallButton');
 const hangupCallButton = document.getElementById('hangupCallButton');
-const muteCallButton = document.getElementById('muteCallButton');
+const toggleMuteButton = document.getElementById('toggleMuteButton');
+const toggleHoldButton = document.getElementById('toggleHoldButton');
 
 // Event listeners for call actions
 makeCallButton.addEventListener('click', () => {
@@ -16,18 +17,19 @@ makeCallButton.addEventListener('click', () => {
 });
 
 answerCallButton.addEventListener('click', () => {
-  // Send a WebSocket event to the server to answer the call
   socket.emit('answerCall');
 });
 
 hangupCallButton.addEventListener('click', () => {
-  // Send a WebSocket event to the server to hang up the call
   socket.emit('hangupCall');
 });
 
-muteCallButton.addEventListener('click', () => {
-  // Send a WebSocket event to the server to toggle mute
+toggleMuteButton.addEventListener('click', () => {
   socket.emit('toggleMute');
+});
+
+toggleHoldButton.addEventListener('click', () => {
+  socket.emit('toggleHold');
 });
 
 // Listen for call status updates from the server
@@ -38,6 +40,39 @@ socket.on('callStatus', (status) => {
 
 // Handle other events from the server and dispatch corresponding actions
 // ...
+// Handle incoming call event from the server
+socket.on('incomingCall', (data) => {
+  const { callerId, phoneNumber } = data;
+  showIncomingCallModal(callerId, phoneNumber);
+});
 
-// Other functions to handle call-related actions
-// ...
+// Show the modal for incoming call notification
+function showIncomingCallModal(callerId, phoneNumber) {
+  const incomingCallModal = document.getElementById('incomingCallModal');
+  const callerIdSpan = document.getElementById('callerIdSpan');
+  const phoneNumberSpan = document.getElementById('phoneNumberSpan');
+  const answerIncomingCallButton = document.getElementById('answerIncomingCallButton');
+  const declineIncomingCallButton = document.getElementById('declineIncomingCallButton');
+
+  callerIdSpan.innerText = callerId;
+  phoneNumberSpan.innerText = phoneNumber;
+  incomingCallModal.style.display = 'block';
+
+  // Implement the logic to answer the call when the 'Answer' button is clicked
+  answerIncomingCallButton.addEventListener('click', () => {
+    socket.emit('answerCall');
+    hideIncomingCallModal();
+  });
+
+  // Implement the logic to decline the call when the 'Decline' button is clicked
+  declineIncomingCallButton.addEventListener('click', () => {
+    hideIncomingCallModal();
+  });
+}
+
+// Hide the incoming call modal
+function hideIncomingCallModal() {
+  const incomingCallModal = document.getElementById('incomingCallModal');
+  incomingCallModal.style.display = 'none';
+}
+

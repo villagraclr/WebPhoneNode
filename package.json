@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "asterisk-ami": "^0.1.0",
     "asterisk-manager": "^0.2.0",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "socket.io": "^4.7.1"
@@ -9,8 +9,9 @@
   "name": "webphonenode",
   "description": "WebPhone to connect to Asterisk and make calls",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
