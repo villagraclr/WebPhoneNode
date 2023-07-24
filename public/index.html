@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webphone</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -13,10 +13,20 @@
             <button id="makeCallButton">Make Call</button>
             <button id="answerCallButton">Answer Call</button>
             <button id="hangupCallButton">Hangup Call</button>
-            <button id="muteCallButton">Mute</button>
+            <button id="toggleMuteButton">Toggle Mute</button>
+            <button id="toggleHoldButton">Toggle Hold</button>
+            <!-- Add more buttons for other call-related actions -->
+        </div>
+        <!-- Modal for incoming call notification -->
+        <div id="incomingCallModal" style="display: none;">
+          <p>Incoming Call</p>
+          <p>Caller ID: <span id="callerIdSpan"></span></p>
+          <p>Phone Number: <span id="phoneNumberSpan"></span></p>
+          <button id="answerIncomingCallButton">Answer</button>
+          <button id="declineIncomingCallButton">Decline</button>
         </div>
     </div>
-    <script src="../node_modules/@socket.io/index.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
